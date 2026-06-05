@@ -1,0 +1,362 @@
+<?xml version="1.0"?>
+<sdf version="1.8">
+  <world name="default">
+    <physics type="ode">
+      <real_time_update_rate>1000.0</real_time_update_rate>
+      <max_step_size>0.01</max_step_size>
+      <real_time_factor>10.0</real_time_factor>
+      <ode>
+        <solver>
+          <type>quick</type>
+          <iters>150</iters>
+          <precon_iters>0</precon_iters>
+          <sor>1.400000</sor>
+          <use_dynamic_moi_rescaling>1</use_dynamic_moi_rescaling>
+        </solver>
+        <constraints>
+          <cfm>0.00001</cfm>
+          <erp>0.2</erp>
+          <contact_max_correcting_vel>2000.000000</contact_max_correcting_vel>
+          <contact_surface_layer>0.01000</contact_surface_layer>
+        </constraints>
+      </ode>
+    </physics>
+    <plugin
+      filename="gz-sim-physics-system"
+      name="gz::sim::systems::Physics">
+    </plugin>
+    <plugin
+      filename="gz-sim-user-commands-system"
+      name="gz::sim::systems::UserCommands">
+    </plugin>
+    <plugin
+      filename="gz-sim-scene-broadcaster-system"
+      name="gz::sim::systems::SceneBroadcaster">
+    </plugin>
+    <plugin
+      filename="gz-sim-sensors-system"
+      name="gz::sim::systems::Sensors">
+      <render_engine>ogre2</render_engine>
+    </plugin>
+    <plugin
+      filename="gz-sim-imu-system"
+      name="gz::sim::systems::Imu">
+    </plugin>
+
+    <include>
+      <uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/Ground Plane</uri>
+    </include>
+
+    <include>
+      <uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/Sun</uri>
+    </include>
+
+    <model name="turtlebot3_world">
+      <static>1</static>
+      <include>
+        <uri>model://turtlebot3_world</uri>
+      </include>
+    </model>
+  
+    <model name="random_wall_0">
+      <static>true</static>
+      <pose>1.2132461057976034 0.856720624358835 0.5 0 0 0</pose>
+
+      <link name="link">
+
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.15 2.0 1.0</size>
+            </box>
+          </geometry>
+        </collision>
+
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.15 2.0 1.0</size>
+            </box>
+          </geometry>
+        </visual>
+
+      </link>
+    </model>
+
+    <model name="random_wall_1">
+      <static>true</static>
+      <pose>-2.045767855747051 1.1980128909944128 0.5 0 0 0</pose>
+
+      <link name="link">
+
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>2.0 0.15 1.0</size>
+            </box>
+          </geometry>
+        </collision>
+
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>2.0 0.15 1.0</size>
+            </box>
+          </geometry>
+        </visual>
+
+      </link>
+    </model>
+
+    <model name="random_wall_3">
+      <static>true</static>
+      <pose>-2.23790046093424 -2.986527998577648 0.5 0 0 0</pose>
+
+      <link name="link">
+
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.15 2.0 1.0</size>
+            </box>
+          </geometry>
+        </collision>
+
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.15 2.0 1.0</size>
+            </box>
+          </geometry>
+        </visual>
+
+      </link>
+    </model>
+
+    <model name="random_wall_4">
+      <static>true</static>
+      <pose>-2.854984542404422 2.7504118372739184 0.5 0 0 0</pose>
+
+      <link name="link">
+
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.15 2.0 1.0</size>
+            </box>
+          </geometry>
+        </collision>
+
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.15 2.0 1.0</size>
+            </box>
+          </geometry>
+        </visual>
+
+      </link>
+    </model>
+
+    <model name="random_wall_5">
+      <static>true</static>
+      <pose>2.711769691516345 -3.0952035109492284 0.5 0 0 0</pose>
+
+      <link name="link">
+
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.15 2.0 1.0</size>
+            </box>
+          </geometry>
+        </collision>
+
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.15 2.0 1.0</size>
+            </box>
+          </geometry>
+        </visual>
+
+      </link>
+    </model>
+
+    <model name="random_wall_6">
+      <static>true</static>
+      <pose>-0.31275783515310085 -2.4355999135915565 0.5 0 0 0</pose>
+
+      <link name="link">
+
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>2.0 0.15 1.0</size>
+            </box>
+          </geometry>
+        </collision>
+
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>2.0 0.15 1.0</size>
+            </box>
+          </geometry>
+        </visual>
+
+      </link>
+    </model>
+
+    <model name="random_wall_7">
+      <static>true</static>
+      <pose>2.684519627398589 -0.6470461721583809 0.5 0 0 0</pose>
+
+      <link name="link">
+
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>2.0 0.15 1.0</size>
+            </box>
+          </geometry>
+        </collision>
+
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>2.0 0.15 1.0</size>
+            </box>
+          </geometry>
+        </visual>
+
+      </link>
+    </model>
+
+    <model name="random_wall_8">
+      <static>true</static>
+      <pose>0.04466367788924641 2.6329901118665324 0.5 0 0 0</pose>
+
+      <link name="link">
+
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>2.0 0.15 1.0</size>
+            </box>
+          </geometry>
+        </collision>
+
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>2.0 0.15 1.0</size>
+            </box>
+          </geometry>
+        </visual>
+
+      </link>
+    </model>
+
+    <model name="random_wall_10">
+      <static>true</static>
+      <pose>-2.332175116905992 1.3363845153135223 0.5 0 0 0</pose>
+
+      <link name="link">
+
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>2.0 0.15 1.0</size>
+            </box>
+          </geometry>
+        </collision>
+
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>2.0 0.15 1.0</size>
+            </box>
+          </geometry>
+        </visual>
+
+      </link>
+    </model>
+
+    <model name="random_wall_11">
+      <static>true</static>
+      <pose>-0.38119429585585785 -1.0502065833057967 0.5 0 0 0</pose>
+
+      <link name="link">
+
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>2.0 0.15 1.0</size>
+            </box>
+          </geometry>
+        </collision>
+
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>2.0 0.15 1.0</size>
+            </box>
+          </geometry>
+        </visual>
+
+      </link>
+    </model>
+
+    <model name="random_wall_12">
+      <static>true</static>
+      <pose>3.204783911003389 1.934702258340498 0.5 0 0 0</pose>
+
+      <link name="link">
+
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.15 2.0 1.0</size>
+            </box>
+          </geometry>
+        </collision>
+
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.15 2.0 1.0</size>
+            </box>
+          </geometry>
+        </visual>
+
+      </link>
+    </model>
+
+    <model name="random_wall_14">
+      <static>true</static>
+      <pose>2.997670959806353 -1.1205048663405313 0.5 0 0 0</pose>
+
+      <link name="link">
+
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>2.0 0.15 1.0</size>
+            </box>
+          </geometry>
+        </collision>
+
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>2.0 0.15 1.0</size>
+            </box>
+          </geometry>
+        </visual>
+
+      </link>
+    </model>
+
+</world>
+</sdf>

@@ -1,0 +1,16 @@
+# ROS 2 Build directories
+build/
+install/
+log/
+.colcon/
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Local/system files
+.DS_Store
+*.swp
+*.user
+*.rviz.user
+nohup.out
