@@ -46,11 +46,10 @@ pane3=$(tmux split-window -v -d -P -F "#{pane_id}" -t $pane1)
 tmux send-keys -t $pane3 \
 "sleep 28 && source /home/anshul/robot_mapping_ws_cpp/install/setup.bash && ros2 run robot_mapping wall_explorer --ros-args -p use_sim_time:=true" C-m
 
-echo "Waiting for services to spin up before launching RViz..."
-sleep 25
-
-echo "Launching RViz2..."
-nohup rviz2 -d /home/anshul/robot_mapping_ws_cpp/mapping.rviz >/dev/null 2>&1 &
+# Create a new tmux window for RViz2 so it runs persistently and inherits display settings
+tmux new-window -t mapping -n rviz
+tmux send-keys -t mapping:rviz \
+"sleep 25 && source /home/anshul/robot_mapping_ws_cpp/install/setup.bash && export DISPLAY=:0 && export WAYLAND_DISPLAY=wayland-0 && rviz2 -d /home/anshul/robot_mapping_ws_cpp/mapping.rviz" C-m
 
 # Attach to the tmux session (fallback gracefully if no terminal supports attachment)
 tmux attach -t mapping || echo "Tmux session 'mapping' started in background. Use 'tmux attach -t mapping' to attach."

@@ -27,6 +27,12 @@ models = [
     {"name": "inner_vertical_north", "x": 0.0, "y": 3.0, "sx": 0.15, "sy": 4.0},
     {"name": "inner_horizontal_east", "x": 3.25, "y": 0.0, "sx": 3.5, "sy": 0.15},
     {"name": "inner_horizontal_west", "x": -3.25, "y": 0.0, "sx": 3.5, "sy": 0.15},
+
+    # Additional obstacles to make mapping more challenging
+    {"name": "obs_q1_pillar", "x": 2.5, "y": 2.5, "sx": 1.0, "sy": 1.0},
+    {"name": "obs_q2_wall", "x": -2.5, "y": 2.5, "sx": 0.15, "sy": 2.0},
+    {"name": "obs_q3_wall", "x": -2.5, "y": -2.5, "sx": 2.0, "sy": 0.15},
+    {"name": "obs_q4_pillar", "x": 2.5, "y": -2.5, "sx": 1.0, "sy": 1.0},
 ]
 
 walls_xml = ""
