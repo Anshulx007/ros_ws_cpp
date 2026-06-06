@@ -47,33 +47,39 @@ private:
         double angular_z = 0.0;
 
         // Target wall distance
-        double target_dist = 0.50;
+        double target_dist = 0.45;
 
-        if (front_min < 0.8) {
-            // Obstacle in front: turn left quickly in place or with small forward speed
-            linear_x = 0.05;
-            angular_z = 0.8;
+        if (front_min < 0.65) {
+            // Obstacle in front: turn left quickly in place
+            linear_x = 0.02;
+            angular_z = 1.5;
             RCLCPP_INFO_THROTTLE(this->get_logger(), *this->get_clock(), 1000, 
                                  "Obstacle in front! Turning left. front: %.2f, right: %.2f", front_min, right_min);
+        } else if (front_min < 1.0) {
+            // Obstacle approaching: slow down and start turning
+            linear_x = 0.15;
+            angular_z = 1.0;
+            RCLCPP_INFO_THROTTLE(this->get_logger(), *this->get_clock(), 1000,
+                                 "Obstacle approaching! Slowing. front: %.2f, right: %.2f", front_min, right_min);
         } else {
             // No front obstacle
             if (right_min > 1.2) {
-                // No wall on the right: turn right to find a wall or follow a outer corner
-                linear_x = 0.15;
-                angular_z = -0.6;
+                // No wall on the right: turn right to find a wall or follow an outer corner
+                linear_x = 0.35;
+                angular_z = -0.8;
                 RCLCPP_INFO_THROTTLE(this->get_logger(), *this->get_clock(), 1000,
                                      "No wall on right. Turning right to find wall. right: %.2f", right_min);
             } else {
-                // Wall detected on the right: follow it
-                linear_x = 0.22;
+                // Wall detected on the right: follow it fast
+                linear_x = 0.50;
                 
-                // Simple proportional control to maintain target distance
+                // Proportional control to maintain target distance
                 double error = right_min - target_dist;
-                angular_z = -1.5 * error;
+                angular_z = -2.0 * error;
                 
                 // Clamp angular speed
-                if (angular_z > 0.6) angular_z = 0.6;
-                if (angular_z < -0.6) angular_z = -0.6;
+                if (angular_z > 1.0) angular_z = 1.0;
+                if (angular_z < -1.0) angular_z = -1.0;
                 
                 RCLCPP_INFO_THROTTLE(this->get_logger(), *this->get_clock(), 1000,
                                      "Following wall. right: %.2f, error: %.2f, angular: %.2f", right_min, error, angular_z);
