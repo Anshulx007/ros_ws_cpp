@@ -361,6 +361,7 @@ class FastSLAM2Node(Node):
 
     def publish_results(self, time_msg):
         x_est = self.calc_final_state()
+        self.get_logger().info(f"[FastSLAM 2.0] Pose: x={x_est[0]:.2f}, y={x_est[1]:.2f}, yaw={x_est[2]:.2f}")
         
         # Publish pose
         pose = PoseStamped()
