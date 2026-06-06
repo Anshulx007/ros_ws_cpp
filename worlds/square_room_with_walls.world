@@ -2,9 +2,9 @@
 <sdf version="1.8">
   <world name="default">
     <physics type="ode">
-      <real_time_update_rate>500.0</real_time_update_rate>
+      <real_time_update_rate>1000.0</real_time_update_rate>
       <max_step_size>0.02</max_step_size>
-      <real_time_factor>10.0</real_time_factor>
+      <real_time_factor>20.0</real_time_factor>
       <ode>
         <solver>
           <type>quick</type>
