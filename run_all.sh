@@ -9,6 +9,7 @@ pkill -9 -f auto_explore 2>/dev/null || true
 pkill -9 -f wall_explorer 2>/dev/null || true
 pkill -9 -f ekf_slam_node 2>/dev/null || true
 pkill -9 -f fast_slam2_node 2>/dev/null || true
+pkill -9 -f topological_explorer_node 2>/dev/null || true
 pkill -9 -f slam_toolbox 2>/dev/null || true
 pkill -9 -f component_container_isolated 2>/dev/null || true
 pkill -9 -f rviz2 2>/dev/null || true
@@ -44,10 +45,10 @@ pane2=$(tmux split-window -v -d -P -F "#{pane_id}" -t $pane0)
 tmux send-keys -t $pane2 \
 "sleep 20 && source /home/anshul/robot_mapping_ws_cpp/install/setup.bash && ros2 launch nav2_bringup bringup_launch.py use_sim_time:=true slam:=False use_localization:=False params_file:=/home/anshul/robot_mapping_ws_cpp/config/waffle.yaml" C-m
 
-# Split Pane 1 vertically to create Pane 3 (for Wall Explorer)
+# Split Pane 1 vertically to create Pane 3 (for Topological Explorer)
 pane3=$(tmux split-window -v -d -P -F "#{pane_id}" -t $pane1)
 tmux send-keys -t $pane3 \
-"sleep 28 && source /home/anshul/robot_mapping_ws_cpp/install/setup.bash && ros2 run robot_mapping wall_explorer --ros-args -p use_sim_time:=true" C-m
+"sleep 28 && source /home/anshul/robot_mapping_ws_cpp/install/setup.bash && /home/anshul/robot_mapping_ws_cpp/scripts/topological_explorer_node.py --ros-args -p use_sim_time:=true" C-m
 
 # Create a new tmux window for FastSLAM 2.0 from PythonRobotics
 tmux new-window -t mapping -n fast_slam
