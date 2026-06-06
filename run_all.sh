@@ -41,10 +41,10 @@ pane2=$(tmux split-window -v -d -P -F "#{pane_id}" -t $pane0)
 tmux send-keys -t $pane2 \
 "sleep 20 && source /home/anshul/robot_mapping_ws_cpp/install/setup.bash && ros2 launch nav2_bringup bringup_launch.py use_sim_time:=true slam:=False use_localization:=False params_file:=/home/anshul/robot_mapping_ws_cpp/config/waffle.yaml" C-m
 
-# Split Pane 1 vertically to create Pane 3 (for Autonomous Explorer)
+# Split Pane 1 vertically to create Pane 3 (for Wall Explorer)
 pane3=$(tmux split-window -v -d -P -F "#{pane_id}" -t $pane1)
 tmux send-keys -t $pane3 \
-"sleep 28 && source /home/anshul/robot_mapping_ws_cpp/install/setup.bash && ros2 run robot_mapping auto_explore --ros-args -p use_sim_time:=true" C-m
+"sleep 28 && source /home/anshul/robot_mapping_ws_cpp/install/setup.bash && ros2 run robot_mapping wall_explorer --ros-args -p use_sim_time:=true" C-m
 
 echo "Waiting for services to spin up before launching RViz..."
 sleep 25
