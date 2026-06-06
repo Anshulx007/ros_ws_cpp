@@ -33,6 +33,13 @@ models = [
     {"name": "obs_q2_wall", "x": -2.5, "y": 2.5, "sx": 0.15, "sy": 2.0},
     {"name": "obs_q3_wall", "x": -2.5, "y": -2.5, "sx": 2.0, "sy": 0.15},
     {"name": "obs_q4_pillar", "x": 2.5, "y": -2.5, "sx": 1.0, "sy": 1.0},
+
+    # Even more obstacles
+    {"name": "obs_q1_small_pillar", "x": 1.5, "y": 3.5, "sx": 0.6, "sy": 0.6},
+    {"name": "obs_q2_small_wall", "x": -3.5, "y": 1.5, "sx": 1.5, "sy": 0.15},
+    {"name": "obs_q3_small_box", "x": -1.5, "y": -3.5, "sx": 0.8, "sy": 0.8},
+    {"name": "obs_q4_small_wall", "x": 3.5, "y": -1.5, "sx": 0.15, "sy": 1.5},
+    {"name": "obs_center_block", "x": 0.0, "y": 0.0, "sx": 0.6, "sy": 0.6},
 ]
 
 walls_xml = ""
