@@ -43,12 +43,13 @@ def generate_launch_description():
         launch_arguments={'gz_args': ['-r -s -v2 ', world], 'on_exit_shutdown': 'true'}.items()
     )
 
-    gzclient_cmd = IncludeLaunchDescription(
-        PythonLaunchDescriptionSource(
-            os.path.join(ros_gz_sim, 'launch', 'gz_sim.launch.py')
-        ),
-        launch_arguments={'gz_args': '-g -v2 ', 'on_exit_shutdown': 'true'}.items()
-    )
+    # Gazebo GUI disabled for headless fast-forward mode
+    # gzclient_cmd = IncludeLaunchDescription(
+    #     PythonLaunchDescriptionSource(
+    #         os.path.join(ros_gz_sim, 'launch', 'gz_sim.launch.py')
+    #     ),
+    #     launch_arguments={'gz_args': '-g -v2 ', 'on_exit_shutdown': 'true'}.items()
+    # )
 
     robot_state_publisher_cmd = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
@@ -77,7 +78,7 @@ def generate_launch_description():
 
     # Add the commands to the launch description
     ld.add_action(gzserver_cmd)
-    ld.add_action(gzclient_cmd)
+    # ld.add_action(gzclient_cmd)  # Disabled for headless fast-forward
     ld.add_action(spawn_turtlebot_cmd)
     ld.add_action(robot_state_publisher_cmd)
     ld.add_action(set_env_vars_resources)
