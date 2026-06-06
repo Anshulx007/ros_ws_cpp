@@ -6,6 +6,8 @@ pkill -9 -f gz 2>/dev/null || true
 pkill -9 -f ruby 2>/dev/null || true
 pkill -9 -f ros2 2>/dev/null || true
 pkill -9 -f auto_explore 2>/dev/null || true
+pkill -9 -f wall_explorer 2>/dev/null || true
+pkill -9 -f ekf_slam_node 2>/dev/null || true
 pkill -9 -f slam_toolbox 2>/dev/null || true
 pkill -9 -f component_container_isolated 2>/dev/null || true
 pkill -9 -f rviz2 2>/dev/null || true
