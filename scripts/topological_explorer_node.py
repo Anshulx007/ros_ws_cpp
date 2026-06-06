@@ -91,6 +91,24 @@ class TopologicalExplorerNode(Node):
             # Check if Nav2 is currently executing a path/goal
             if self.nav_active:
                 self.get_logger().info("Navigating to target...", throttle_duration_sec=5.0)
+                if self.target_frontier is not None:
+                    fy, fx = self.target_frontier["centroid"]
+                    msg = self.latest_map
+                    if msg is not None:
+                        tx = fx * msg.info.resolution + msg.info.origin.position.x
+                        ty = fy * msg.info.resolution + msg.info.origin.position.y
+                        dist = math.hypot(self.robot_pose.x - tx, self.robot_pose.y - ty)
+                        if dist < 0.45:
+                            self.get_logger().info(f"Robot is close to target ({dist:.2f}m < 0.45m). Canceling goal to avoid orientation sticking.")
+                            if self.nav_goal_handle is not None:
+                                try:
+                                    self.nav_goal_handle.cancel_goal_async()
+                                except Exception:
+                                    pass
+                            
+                            # Blacklist the current target frontier to avoid loop
+                            self.blacklist.append((tx, ty))
+                            self.nav_active = False
                 return
                 
             # Perform Topological Segmentation and Frontier Allocation
@@ -131,6 +149,17 @@ class TopologicalExplorerNode(Node):
                 
         elif self.state == 'COVERAGE_EXECUTION':
             if self.nav_active:
+                if self.stc_index > 0 and self.stc_index - 1 < len(self.stc_path):
+                    target_wp = self.stc_path[self.stc_index - 1]
+                    dist = math.hypot(self.robot_pose.x - target_wp[0], self.robot_pose.y - target_wp[1])
+                    if dist < 0.40:
+                        self.get_logger().info(f"Robot is close to coverage waypoint ({dist:.2f}m < 0.40m). Skipping to next.")
+                        if self.nav_goal_handle is not None:
+                            try:
+                                self.nav_goal_handle.cancel_goal_async()
+                            except Exception:
+                                pass
+                        self.nav_active = False
                 return
                 
             if self.stc_index < len(self.stc_path):
