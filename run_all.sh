@@ -46,6 +46,11 @@ pane3=$(tmux split-window -v -d -P -F "#{pane_id}" -t $pane1)
 tmux send-keys -t $pane3 \
 "sleep 28 && source /home/anshul/robot_mapping_ws_cpp/install/setup.bash && ros2 run robot_mapping wall_explorer --ros-args -p use_sim_time:=true" C-m
 
+# Create a new tmux window for EKF SLAM from PythonRobotics
+tmux new-window -t mapping -n ekf_slam
+tmux send-keys -t mapping:ekf_slam \
+"sleep 18 && source /home/anshul/robot_mapping_ws_cpp/install/setup.bash && /home/anshul/robot_mapping_ws_cpp/scripts/ekf_slam_node.py --ros-args -p use_sim_time:=true" C-m
+
 # Create a new tmux window for RViz2 so it runs persistently and inherits display settings
 tmux new-window -t mapping -n rviz
 tmux send-keys -t mapping:rviz \
