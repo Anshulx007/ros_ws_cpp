@@ -35,6 +35,7 @@ ament_target_dependencies(wall_explorer
   rclcpp
   sensor_msgs
   geometry_msgs
+  nav_msgs
 )
 
 # Install executable
